@@ -1,5 +1,12 @@
 package edu.grinnell.csc207.kelleyan.utils;
 
+/**
+ * This class was created by Andrew Kelley 
+ * for the Grinnell College csc207 homework 3 project
+ * on 9-16-2013
+ * @author Andrew Kelley
+ *
+ */
 public class StringUtils {
 	
 	/**
@@ -57,6 +64,20 @@ public class StringUtils {
 	 * @return a string array with the separations created by
 	 * the commas in the original string
 	 */
+	
+/*
+ * Right now, splitCSV is not working completely. It works when
+ * there are no double quotes and it also works when there are sets
+ * of double quotes grouping different elements. It does not work
+ * when there are more than one quote in a sequence. I have spend 
+ * too much time trying to figure out how to do this right now
+ * but will return when my brain can handle the annoyance of 
+ * double quotations.
+ * 
+ * The odd green // comments in the middle of the code were my
+ * attempts to make the double quotes work and are commented out
+ * to make the rest of the method work.
+ */
 	public static String[] splitCSV (String toSplit) {
 		int placeHolder = 0; //tracks latest position of new substring
 		int arrayCount = 0; //tracks of position of array entries
@@ -87,21 +108,21 @@ public class StringUtils {
 				}
 			}
 			else if(toSplit.charAt(x) == '"') {
-				if (toSplit.charAt(x + 1) == '"') {
-					placeHolder = x + 2;
-					x += 2;
-				}
-				else {
+//				if (toSplit.charAt(x + 1) == '"') {
+//					placeHolder = x + 2;
+//					x += 2;
+//				}
+//				else {
 				placeHolder = x + 1;
 				x++;
-				}
+//				}
 				while (toSplit.charAt(x) != '"') {
-					if (x == toSplit.length() - 1)
-						break;
-					if (toSplit.charAt(x + 1) == '"') {
-						x += 2;
-					}
-					else
+//					if (x == toSplit.length() - 1)
+//						break;
+//					if (toSplit.charAt(x + 1) == '"') {
+//						x += 2;
+//					}
+//					else
 						x++;
 				}
 				splitArray[arrayCount] = 
@@ -138,14 +159,18 @@ public class StringUtils {
 			else if (leet.charAt(x) == '1')
 				deLeet += 'l';
 			else if (leet.charAt(x) == '|' && leet.charAt(x + 1) == '\\' 
-					&& leet.charAt(x + 2) == '|')
+					&& leet.charAt(x + 2) == '|') {
 				deLeet += 'n';
+				x += 2;
+			}
 			else if (leet.charAt(x) == '0')
 				deLeet += 'o';
 			else if (leet.charAt(x) == '+')
 				deLeet += 't';
 			else if (leet.charAt(x) == ' ')
 				deLeet += ' ';
+			else
+				deLeet += leet.charAt(x);
 		}
 		return deLeet;
 	}//deLeet(String)
@@ -186,17 +211,23 @@ public class StringUtils {
 		return verse;
 	}
 	
+	/**
+	 * Here is a main method to show the output of various
+	 * names input into the nameGame method. Feel free to 
+	 * highlight and control / them to uncomment and run
+	 * @param args
+	 */
 	public static void main(String[] args) {
-	/*	System.out.println(nameGame("Shirley"));
-		System.out.println(nameGame("Lincoln"));
-		System.out.println(nameGame("Matthew"));
-		System.out.println(nameGame("Steven"));
-		System.out.println(nameGame("Andrew"));
-		System.out.println(nameGame("Eric"));*/
-	/*	String[] str = splitCSV("a,\"b,b\"\"\",c");
+//		System.out.println(nameGame("Shirley"));
+//		System.out.println(nameGame("Lincoln"));
+//		System.out.println(nameGame("Matthew"));
+//		System.out.println(nameGame("Steven"));
+//		System.out.println(nameGame("Andrew"));
+//		System.out.println(nameGame("Eric"));
+		String[] str = splitCSV("a,\"b,b\",c");
 		for (int x = 0; x < str.length; x++) {
 			System.out.println(str[x]);
-		}*/
+		}
 	}
 }
 

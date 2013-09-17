@@ -34,6 +34,11 @@ public class TestStringUtils {
 	}
 
 	@Test
+	/*
+	 * These are the tests from the homework sheet and, as 
+	 * the method did not complete all of these tests,
+	 * I did not add any more quite yet.
+	 */
 	public void test_splitCSV() {
 		assertArrayEquals(new String[] { "a", "b", "c" },
                 StringUtils.splitCSV("a,b,c"));
@@ -48,6 +53,10 @@ public class TestStringUtils {
 		assertEquals("e", StringUtils.deLeet("3"));
 		assertEquals("leet", StringUtils.deLeet("133+"));
 		assertEquals("eat banana", StringUtils.deLeet("3@+ |3@|\\|@|\\|@"));
+		//above tests are from the homework written by Sam Rebelsky
+		assertEquals("leno", StringUtils.deLeet("13|\\|0"));
+		assertEquals("nobel", StringUtils.deLeet("|\\|0|331"));
+		assertEquals("abe lincoln", StringUtils.deLeet("@|33 1i|\\|c01|\\|"));
 	}
 }
 
